@@ -1,0 +1,20 @@
+.bootle {
+  width: 15vmin;
+  height: 15vmin;
+  object-fit: contain;
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.spinning {
+  animation: spin 4s ease-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1280deg);
+  }
+}

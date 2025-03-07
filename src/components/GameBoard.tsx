@@ -1,4 +1,5 @@
 import UserAvatar from "./UserAvatar";
+import Bottle from "./Bottle";
 import { USERS } from "../data";
 import { IUser } from "../types";
 import "./GameBoard.css";
@@ -13,7 +14,11 @@ const GameBoard = () => {
   };
 
   return (
-    <div className="game-board">{USERS.map(returnUserInCircleByIndex)}</div>
+    <div className="game-board">
+      {USERS.map(returnUserInCircleByIndex)}
+      <Bottle />
+      <div className="kiss-counter">Поцелуев: 2</div>
+    </div>
   );
 };
 
