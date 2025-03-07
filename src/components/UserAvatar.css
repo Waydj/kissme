@@ -1,0 +1,14 @@
+.user {
+  position: absolute;
+  width: 15vmin;
+  height: 15vmin;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
