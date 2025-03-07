@@ -4,12 +4,12 @@ export const USERS: IUser[] = [
   {
     id: 1,
     avatar: "/profile/Regular face 1.png",
-    name: "John",
+    name: "Alice",
   },
   {
     id: 2,
     avatar: "/profile/Regular face 2.png",
-    name: "Alice",
+    name: "John",
   },
   {
     id: 3,
@@ -24,12 +24,12 @@ export const USERS: IUser[] = [
   {
     id: 5,
     avatar: "/profile/Regular face 5.png",
-    name: "Ivan",
+    name: "Inna",
   },
   {
     id: 6,
     avatar: "/profile/Regular face 6.png",
-    name: "Nikolay",
+    name: "Sophia",
   },
   {
     id: 7,
@@ -44,11 +44,11 @@ export const USERS: IUser[] = [
   {
     id: 9,
     avatar: "/profile/Regular face 9.png",
-    name: "John Doe",
+    name: "Michel",
   },
   {
     id: 10,
     avatar: "/profile/Regular face 10.png",
-    name: "Tom",
+    name: "Olga",
   },
 ];
