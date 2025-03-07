@@ -1,10 +1,24 @@
+import { useReducer } from "react";
 import UserAvatar from "./UserAvatar";
 import Bottle from "./Bottle";
+import { reducer, State } from "../reducers/AppReducer";
 import { USERS } from "../data";
 import { IUser } from "../types";
 import "./GameBoard.css";
 
+const initialState: State = {
+  countdown: 3,
+  spinning: false,
+  activePlayer: 0,
+  targetPlayer: null,
+  rotationAngle: 0,
+  showKiss: false,
+  kissCounter: 0,
+};
+
 const GameBoard = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const returnUserInCircleByIndex = (user: IUser, index: number) => {
     const angle = (index / USERS.length) * 2 * Math.PI;
     const x = Math.cos(angle) * 40;
