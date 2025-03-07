@@ -1,22 +1,14 @@
 import { useEffect, useReducer, useRef } from "react";
 import UserAvatar from "./UserAvatar";
 import Bottle from "./Bottle";
-import { ActionType, reducer, State } from "../reducers/AppReducer";
+import Kiss from "./Kiss";
+import { ActionType, initialState, reducer } from "../reducers/AppReducer";
 import { USERS } from "../data";
 import { IUser } from "../types";
 import "./GameBoard.css";
 
 const spinSound = new Audio("/Spinning sound.mp3");
-
-const initialState: State = {
-  countdown: 3,
-  spinning: false,
-  activePlayer: 0,
-  targetPlayer: null,
-  rotationAngle: 0,
-  showKiss: false,
-  kissCounter: 0,
-};
+const kissSound = new Audio("/Kiss sound.mp3");
 
 const GameBoard = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -27,7 +19,24 @@ const GameBoard = () => {
     const x = Math.cos(angle) * 40;
     const y = Math.sin(angle) * 40;
 
-    return <UserAvatar key={user.id} user={user} x={x} y={y} />;
+    const isMovingToCenter =
+      state.showKiss &&
+      (index === state.activePlayer || index === state.targetPlayer);
+
+    const centerOffset = index === state.activePlayer ? "-15vmin" : "15vmin";
+    const activePlayer = state.activePlayer === index;
+
+    return (
+      <UserAvatar
+        key={user.id}
+        user={user}
+        isActive={activePlayer}
+        isMovingToCenter={isMovingToCenter}
+        centerOffset={centerOffset}
+        x={x}
+        y={y}
+      />
+    );
   };
 
   const spinBottle = () => {
@@ -39,8 +48,16 @@ const GameBoard = () => {
     } while (newTarget === state.activePlayer);
     timeoutRef.current = setTimeout(() => {
       dispatch({ type: ActionType.STOP_SPIN, payload: newTarget });
-      // showKiss();
+      showKiss();
     }, 4000);
+  };
+
+  const showKiss = () => {
+    dispatch({ type: ActionType.SHOW_KISS });
+    kissSound.play();
+    setTimeout(() => {
+      dispatch({ type: ActionType.HIDE_KISS });
+    }, 2000);
   };
 
   useEffect(() => {
@@ -66,6 +83,7 @@ const GameBoard = () => {
       {state.countdown > 0 && (
         <div className="countdown">{state.countdown}</div>
       )}
+      {state.showKiss && <Kiss />}
       <div className="kiss-counter">Поцелуев: {state.kissCounter}</div>
     </div>
   );

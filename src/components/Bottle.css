@@ -1,6 +1,6 @@
 .bootle {
-  width: 15vmin;
-  height: 15vmin;
+  width: 17vmin;
+  height: 17vmin;
   object-fit: contain;
   transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;

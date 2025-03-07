@@ -1,6 +1,6 @@
 import "./Bottle.css";
 
-const bottleImgSrc = "/Bottle.png";
+const bottleImgSrc: string = "/Bottle.png";
 
 interface BottleProps {
   spinning: boolean;

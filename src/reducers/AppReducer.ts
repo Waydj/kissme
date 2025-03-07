@@ -10,6 +10,16 @@ export interface State {
   kissCounter: number;
 }
 
+export const initialState: State = {
+  countdown: 3,
+  spinning: false,
+  activePlayer: 0,
+  targetPlayer: null,
+  rotationAngle: 0,
+  showKiss: false,
+  kissCounter: 0,
+};
+
 export enum ActionType {
   TICK = "TICK",
   START_SPIN = "START_SPIN",
@@ -36,7 +46,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         spinning: false,
-        targetPlayer: action.payload ? action.payload : null,
+        targetPlayer: action.payload ?? 0,
         rotationAngle: newAngle,
       };
     case ActionType.SHOW_KISS:

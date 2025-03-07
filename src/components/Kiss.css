@@ -1,0 +1,30 @@
+.kiss-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 2vmin;
+  animation: kissEffect 2s ease-in-out;
+}
+
+.kiss-icon {
+  width: 8vmin;
+  height: 8vmin;
+}
+
+@keyframes kissEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
