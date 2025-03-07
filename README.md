@@ -14,4 +14,4 @@
 
 ## Ссылка на демо
 
-<https://skillbox.ru/media/code/>
+<https://kiss-me-test.netlify.app/>
