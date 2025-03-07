@@ -1,13 +1,13 @@
 import { IUser } from "../types";
 import "./UserAvatar.css";
 
-interface IUserAvatar {
+interface UserAvatarProps {
   user: IUser;
   x: number;
   y: number;
 }
 
-const UserAvatar: React.FC<IUserAvatar> = ({ user, x, y }) => {
+const UserAvatar: React.FC<UserAvatarProps> = ({ user, x, y }) => {
   return (
     <div
       key={user.id}
