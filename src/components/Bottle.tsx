@@ -3,16 +3,15 @@ import "./Bottle.css";
 const bottleImgSrc: string = "/Bottle.png";
 
 interface BottleProps {
-  spinning: boolean;
   rotationAngle: number;
 }
 
-const Bottle: React.FC<BottleProps> = ({ spinning, rotationAngle }) => {
+const Bottle: React.FC<BottleProps> = ({ rotationAngle }) => {
   return (
     <img
       src={bottleImgSrc}
       alt="Bottle"
-      className={`bootle ${spinning ? "spinning" : ""}`}
+      className="bootle"
       style={{ transform: `rotate(${rotationAngle}deg)` }}
     />
   );

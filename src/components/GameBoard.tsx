@@ -40,12 +40,13 @@ const GameBoard = () => {
   };
 
   const spinBottle = () => {
-    dispatch({ type: ActionType.START_SPIN });
     spinSound.play();
     let newTarget: number;
     do {
       newTarget = Math.floor(Math.random() * USERS.length);
     } while (newTarget === state.activePlayer);
+    dispatch({ type: ActionType.START_SPIN, payload: newTarget });
+
     timeoutRef.current = setTimeout(() => {
       dispatch({ type: ActionType.STOP_SPIN, payload: newTarget });
       showKiss();
@@ -79,7 +80,7 @@ const GameBoard = () => {
   return (
     <div className="game-board">
       {USERS.map(returnUserInCircleByIndex)}
-      <Bottle spinning={state.spinning} rotationAngle={state.rotationAngle} />
+      <Bottle rotationAngle={state.rotationAngle} />
       {state.countdown > 0 && (
         <div className="countdown">{state.countdown}</div>
       )}

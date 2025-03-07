@@ -2,7 +2,6 @@ import { USERS } from "../data";
 
 export interface State {
   countdown: number;
-  spinning: boolean;
   activePlayer: number | null;
   targetPlayer: number | null;
   rotationAngle: number;
@@ -12,7 +11,6 @@ export interface State {
 
 export const initialState: State = {
   countdown: 3,
-  spinning: false,
   activePlayer: 0,
   targetPlayer: null,
   rotationAngle: 0,
@@ -33,21 +31,21 @@ export interface Action {
   payload?: number;
 }
 
+const anglePerPlayer = 360 / USERS.length;
+const randomOffset = () => (Math.random() < 0.5 ? 1440 : -1440);
+
 export const reducer = (state: State, action: Action): State => {
-  const anglePerPlayer = 360 / USERS.length;
-  const newAngle = 90 + (action.payload ?? 0) * anglePerPlayer;
+  const newAngle = 90 - randomOffset() + (action.payload ?? 0) * anglePerPlayer;
 
   switch (action.type) {
     case ActionType.TICK:
       return { ...state, countdown: state.countdown - 1 };
     case ActionType.START_SPIN:
-      return { ...state, spinning: true };
+      return { ...state, rotationAngle: newAngle };
     case ActionType.STOP_SPIN:
       return {
         ...state,
-        spinning: false,
         targetPlayer: action.payload ?? 0,
-        rotationAngle: newAngle,
       };
     case ActionType.SHOW_KISS:
       return { ...state, showKiss: true };
